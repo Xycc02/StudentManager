@@ -24,6 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.adpater.CourseManageAdapter;
 import com.shu.studentmanager.adpater.CourseOpenAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.databinding.ManageCourseFragmentBinding;
 import com.shu.studentmanager.databinding.ManageStudentFragmentBinding;
 import com.shu.studentmanager.entity.CourseTeacher;

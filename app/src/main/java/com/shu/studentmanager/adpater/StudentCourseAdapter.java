@@ -3,6 +3,8 @@ package com.shu.studentmanager.adpater;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
@@ -66,23 +68,18 @@ public class StudentCourseAdapter extends RecyclerView.Adapter<StudentCourseAdap
             holder.student_course_tid.setText(courseStudentEntity.getTid());
             holder.student_course_tname.setText(courseStudentEntity.getTname());
             holder.student_course_ccredit.setText(courseStudentEntity.getCcredit());
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    new MaterialAlertDialogBuilder(context)
-                            .setTitle("确认")
-                            .setMessage("确定不选该课程？")
-                            .setNeutralButton("取消",new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            })
-                            .setPositiveButton("确认", (dialog, which) -> {
-                                Log.d(TAG, "onClick: "+which+" "+position);
-                                enSureDelete(courseStudentList.get(position));
-                            }).show();
-                    return false;
-                }
+            holder.itemView.setOnLongClickListener(view -> {
+                new MaterialAlertDialogBuilder(context)
+                        .setTitle("确认")
+                        .setMessage("确定不选该课程？")
+                        .setNeutralButton("取消", (dialog, which) -> {
+                            Log.d(TAG,"取消" + courseStudentList.get(position).toString());
+                        })
+                        .setPositiveButton("确认", (dialog, which) -> {
+                            Log.d(TAG,"确认" + courseStudentList.get(position).toString());
+                            enSureDelete(courseStudentList.get(position));
+                        }).show();
+                return false;
             });
         } else {
             return;
@@ -94,7 +91,26 @@ public class StudentCourseAdapter extends RecyclerView.Adapter<StudentCourseAdap
      * @param courseStudent
      */
     private void enSureDelete(CourseStudent courseStudent) {
-
+        Log.d(TAG, "enSureDelete: "+ courseStudent.toString());
+        StudentManagerApplication application =(StudentManagerApplication) context.getApplicationContext();
+        String url = MSConstant.BASE_URL + "SCT/deleteById/"+application.getId()+"/"+courseStudent.getCid()+"/"+courseStudent.getTid()+"/"+application.getCurrentTerm();
+        new Thread(){
+            @Override
+            public void run(){
+                super.run();
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                        .build();
+                Request request = new Request.Builder()
+                        .url(url)
+                        .method("GET", null)
+                        .build();
+                try {
+                    client.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     @Override
