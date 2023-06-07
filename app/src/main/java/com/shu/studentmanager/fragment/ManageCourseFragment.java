@@ -191,7 +191,7 @@ public class ManageCourseFragment extends Fragment {
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(JSON,json.toString());
                 Request request = new Request.Builder()
-                        .url("http://192.168.60.77:10086/course/findBySearch")
+                        .url(MSConstant.BASE_URL + "course/findBySearch")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();

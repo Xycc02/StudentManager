@@ -28,6 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.activity.MainActivity;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.entity.ScoreTeacher;
 import com.shu.studentmanager.fragment.ScoreManageFragment;
@@ -117,7 +118,7 @@ public class ScoreTeacherAdapter extends RecyclerView.Adapter<ScoreTeacherAdapte
     }
 
     private void enSureChange(String input, ScoreTeacher scoreTeacher) {
-        String url = "http://192.168.60.77:10086/SCT/updateById/" + scoreTeacher.getSid() + '/' + scoreTeacher.getCid() + '/'
+        String url = MSConstant.BASE_URL + "SCT/updateById/" + scoreTeacher.getSid() + '/' + scoreTeacher.getCid() + '/'
                         + scoreTeacher.getTid() + '/' + scoreTeacher.getTerm() + '/' + input;
         new Thread(){
             @Override

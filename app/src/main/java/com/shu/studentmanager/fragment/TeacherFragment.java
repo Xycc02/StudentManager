@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.adpater.CourseAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.databinding.TeacherFragmentBinding;
 import com.shu.studentmanager.entity.Course;
 import com.shu.studentmanager.entity.CourseTeacher;
@@ -94,7 +95,7 @@ public class TeacherFragment extends Fragment {
 
     private void initCourseList() throws IOException {
         StudentManagerApplication application =(StudentManagerApplication) getActivity().getApplication();
-        String url = "http://192.168.60.77:10086/courseTeacher/findMyCourse/"+application.getId()+"/"+application.getCurrentTerm();
+        String url = MSConstant.BASE_URL + "courseTeacher/findMyCourse/"+application.getId()+"/"+application.getCurrentTerm();
         new Thread(){
             @Override
             public void run(){
@@ -125,7 +126,7 @@ public class TeacherFragment extends Fragment {
      */
 //    private List<Course> getCourseList() {
 //        List<Course> mlist = new ArrayList<>();
-//        String url = "http://192.168.60.77:10086/SCT/findBySid/2/22-春季学期";
+//        String url = MSConstant.BASE_URL + "SCT/findBySid/2/22-春季学期";
 //        new Thread(){
 //            @Override
 //            public void run(){

@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.activity.MainActivity;
 import com.shu.studentmanager.adpater.CourseOpenAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.databinding.OpenClassFragmentBinding;
 import com.shu.studentmanager.entity.CourseTeacher;
@@ -193,7 +194,7 @@ public class OpenClassFragment extends Fragment {
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(JSON,json.toString());
                 Request request = new Request.Builder()
-                        .url("http://192.168.60.77:10086/course/findBySearch")
+                        .url(MSConstant.BASE_URL + "course/findBySearch")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();

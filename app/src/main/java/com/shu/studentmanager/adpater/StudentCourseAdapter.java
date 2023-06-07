@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.shu.studentmanager.R;
+import com.shu.studentmanager.StudentManagerApplication;
+import com.shu.studentmanager.activity.MainActivity;
+import com.shu.studentmanager.constant.MSConstant;
+import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.entity.CourseStudent;
 import com.shu.studentmanager.entity.CourseTeacher;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class StudentCourseAdapter extends RecyclerView.Adapter<StudentCourseAdapter.ViewHolder> {
     Context context;
@@ -66,12 +77,9 @@ public class StudentCourseAdapter extends RecyclerView.Adapter<StudentCourseAdap
                                 public void onClick(DialogInterface dialog, int which) {
                                 }
                             })
-                            .setPositiveButton("确认",new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Log.d(TAG, "onClick: "+which+" "+position);
-                                    enSureDelete(courseStudentList.get(position));
-                                }
+                            .setPositiveButton("确认", (dialog, which) -> {
+                                Log.d(TAG, "onClick: "+which+" "+position);
+                                enSureDelete(courseStudentList.get(position));
                             }).show();
                     return false;
                 }
@@ -80,8 +88,12 @@ public class StudentCourseAdapter extends RecyclerView.Adapter<StudentCourseAdap
             return;
         }
     }
+
+    /**
+     * 确认取消选课
+     * @param courseStudent
+     */
     private void enSureDelete(CourseStudent courseStudent) {
-        Log.d(TAG, "enSureDelete: "+ courseStudent.toString());
 
     }
 

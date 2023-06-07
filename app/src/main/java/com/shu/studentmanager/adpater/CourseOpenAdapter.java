@@ -24,6 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.activity.MainActivity;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.entity.CourseTeacher;
 import com.shu.studentmanager.fragment.OpenClassFragment;
@@ -98,7 +99,7 @@ public class CourseOpenAdapter extends RecyclerView.Adapter<CourseOpenAdapter.Vi
     private void enSureOpen(CourseTeacher courseTeacher) {
         Log.d(TAG, "enSureOpen: "+ courseTeacher.toString());
         StudentManagerApplication application =(StudentManagerApplication) context.getApplicationContext();
-        String url = "http://192.168.60.77:10086/courseTeacher/insert/"+courseTeacher.getCid()+"/"+ application.getId() +"/"+application.getCurrentTerm();
+        String url = MSConstant.BASE_URL + "courseTeacher/insert/"+courseTeacher.getCid()+"/"+ application.getId() +"/"+application.getCurrentTerm();
         new Thread(){
             @Override
             public void run(){

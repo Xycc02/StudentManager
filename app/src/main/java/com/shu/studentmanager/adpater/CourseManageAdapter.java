@@ -26,6 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.activity.MainActivity;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.entity.CourseTeacher;
 
@@ -133,7 +134,7 @@ public class CourseManageAdapter extends RecyclerView.Adapter<CourseManageAdapte
     private void enSureDelete(CourseTeacher courseTeacher) {
         Log.d(TAG, "enSureDelete: "+ courseTeacher.toString());
         StudentManagerApplication application =(StudentManagerApplication) context.getApplicationContext();
-        String url = "http://192.168.60.77/course/deleteById/"+courseTeacher.getCid();
+        String url = MSConstant.BASE_URL + "course/deleteById/"+courseTeacher.getCid();
         new Thread(){
             @Override
             public void run(){

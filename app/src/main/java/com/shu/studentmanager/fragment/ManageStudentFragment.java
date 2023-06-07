@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.adpater.StudentAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.databinding.ManageStudentFragmentBinding;
 import com.shu.studentmanager.entity.CourseTeacher;
 import com.shu.studentmanager.entity.Student;
@@ -91,7 +92,7 @@ public class ManageStudentFragment extends Fragment {
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(JSON,json.toString());
                 Request request = new Request.Builder()
-                        .url("http://192.168.60.77:10086/student/findBySearch")
+                        .url(MSConstant.BASE_URL + "student/findBySearch")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();

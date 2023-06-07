@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.adpater.ScoreStudentAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.databinding.ScoreReviewFragmentBinding;
 import com.shu.studentmanager.entity.Course;
 import com.shu.studentmanager.entity.ScoreTeacher;
@@ -73,7 +74,7 @@ public class ScoreReviewFragment extends Fragment {
 
     private void initScoreReviewList() {
         StudentManagerApplication application =(StudentManagerApplication) getActivity().getApplication();
-        String url = "http://192.168.60.77:10086/SCT/findBySid/"+application.getId()+"/"+application.getCurrentTerm();
+        String url = MSConstant.BASE_URL + "SCT/findBySid/"+application.getId()+"/"+application.getCurrentTerm();
 
         new Thread(){
             @Override

@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
 import com.shu.studentmanager.adpater.StudentCourseAdapter;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.databinding.StudentFragmentBinding;
 import com.shu.studentmanager.entity.CourseStudent;
 import com.shu.studentmanager.entity.CourseTeacher;
@@ -90,7 +91,7 @@ public class StudentFragment extends Fragment {
 
     private void initStudentCourseList() throws IOException  {
         StudentManagerApplication application = (StudentManagerApplication) getActivity().getApplication();
-        String url = "http://192.168.60.77:10086/SCT/findBySid/"+application.getId()+"/"+application.getCurrentTerm();
+        String url = MSConstant.BASE_URL + "SCT/findBySid/"+application.getId()+"/"+application.getCurrentTerm();
         new Thread(){
             @Override
             public void run(){

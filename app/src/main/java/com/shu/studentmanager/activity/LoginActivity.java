@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.constant.RequestConstant;
 import com.shu.studentmanager.databinding.ActivityLoginBinding;
 import com.shu.studentmanager.entity.Student;
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             json.put("sid",username);
         }
         json.put("password",password);
-        String url = "http://192.168.60.77:10086/" + user_kind + "/login";
+        String url = MSConstant.BASE_URL + user_kind + "/login";
         new Thread(){
           @Override
           public void run(){
@@ -143,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
         }.start();
     }
     private void load(String username) throws IOException {
-        String url = "http://192.168.60.77:10086/" + user_kind + "/findById/" + username;
+        String url = MSConstant.BASE_URL + user_kind + "/findById/" + username;
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
@@ -177,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
-                .url("http://192.168.60.77:10086/info/getCurrentTerm")
+                .url(MSConstant.BASE_URL + "info/getCurrentTerm")
                 .method("GET", null)
                 .build();
         Response response = client.newCall(request).execute();
@@ -192,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
-                .url("http://192.168.60.77:10086/info/getCurrentTerm")
+                .url(MSConstant.BASE_URL + "info/getCurrentTerm")
                 .method("GET", null)
                 .build();
         Response response = client.newCall(request).execute();

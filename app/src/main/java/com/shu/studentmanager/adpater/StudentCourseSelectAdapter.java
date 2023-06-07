@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shu.studentmanager.R;
 import com.shu.studentmanager.StudentManagerApplication;
+import com.shu.studentmanager.constant.MSConstant;
 import com.shu.studentmanager.entity.CourseStudent;
 import com.shu.studentmanager.entity.CourseTeacher;
 
@@ -117,7 +118,7 @@ public class StudentCourseSelectAdapter extends RecyclerView.Adapter<StudentCour
                 MediaType mediaType = MediaType.parse("application/json");
                 RequestBody body = RequestBody.create(JSON,json.toString());
                 Request request = new Request.Builder()
-                        .url("http://192.168.60.77:10086/SCT/save")
+                        .url(MSConstant.BASE_URL + "SCT/save")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();
