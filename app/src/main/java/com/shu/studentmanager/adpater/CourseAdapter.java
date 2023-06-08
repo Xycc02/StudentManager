@@ -105,21 +105,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 try {
                     Response response = client.newCall(request).execute();
                     if (response.isSuccessful()) {
-//                      Log.d(TAG, "run: "+response.body().string());
-                        Boolean insert_true = Boolean.parseBoolean(response.body().string());
-                        final MainActivity mainActivity;
-                        mainActivity = (MainActivity) context;
-                        if(insert_true){
-                            Handler handler = mainActivity.getHandler_main_activity();
-                            Message message = handler.obtainMessage();
-                            message.what = RequestConstant.REQUEST_SUCCESS;
-                            handler.sendMessage(message);
-                        } else {
-                            Handler handler = mainActivity.getHandler_main_activity();
-                            Message message = handler.obtainMessage();
-                            message.what = RequestConstant.REQUEST_FAILURE;
-                            handler.sendMessage(message);
-                        }
+                        Boolean.parseBoolean(response.body().string());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
